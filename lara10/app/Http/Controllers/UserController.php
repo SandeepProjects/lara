@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illumniate\Http\Request;
 use App\Models\User;
+use App\Http\Requests\UserStoreRequest;
+
 
 class UserController extends Controller
 {
@@ -30,24 +32,25 @@ class UserController extends Controller
         ], 200);
     }
 
-    // public function store(UserStoreRequest $request)
-    // {
-    //     try {
-    //         // Create user with hashed password
-    //         User::create([
-    //             'name' => $request->name,
-    //             'email' => $request->email,
-    //             'password' => Hash::make($request->password),  // Hash the password
-    //         ]);
 
-    //         return response()->json([
-    //             'message' => "User successfully created."
-    //         ], 201);  // Use HTTP status code 201 for resource creation success
-    //     } catch (\Exception $e) {
-    //         return response()->json([
-    //             'message' => "Something Went Wrong!!",
-    //             'error' => $e->getMessage()  // Optionally include the error message
-    //         ], 500);
-    //     }
-    // }  //
+    public function store(UserStoreRequest $request)
+    {
+        try {
+            // Create user with hashed password
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),  // Hash the password
+            ]);
+
+            return response()->json([
+                'message' => "User successfully created."
+            ], 201);  // Use HTTP status code 201 for resource creation success
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => "Something Went Wrong!!",
+                'error' => $e->getMessage()  // Optionally include the error message
+            ], 500);
+        }
+    }
 }

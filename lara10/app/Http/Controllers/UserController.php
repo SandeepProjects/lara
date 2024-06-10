@@ -16,19 +16,19 @@ class UserController extends Controller
     }
 
 
-    // public function show($id)
-    // {
-    //     $users = User::find($id);
-    //     if (!$users) {
-    //         return response()->json([
-    //             'message' => 'User not found.'
-    //         ], 404);
-    //     }
+    public function show($id)
+    {
+        $users = User::find($id);
+        if (!$users) {
+            return response()->json([
+                'message' => 'User not found.'
+            ], 404);
+        }
 
-    //     return response()->json([
-    //         'users' => $users
-    //     ], 200);
-    // }
+        return response()->json([
+            'users' => $users
+        ], 200);
+    }
 
     // public function store(UserStoreRequest $request)
     // {

@@ -44,12 +44,12 @@ class UserController extends Controller
             ]);
 
             return response()->json([
-                'message' => "User successfully created."
-            ], 200);  // Use HTTP status code 201 for resource creation success
+                'message' => "User successfully created"
+            ], 200);
+             // Use HTTP status code 201 for resource creation success
         } catch (\Exception $e) {
             return response()->json([
-                'message' => "Something Went Wrong!!",
-                'error' => $e->getMessage()  // Optionally include the error message
+                'message' => "Something Went Wrong!!",  // Optionally include the error message
             ], 500);
         }
     }
@@ -59,7 +59,7 @@ class UserController extends Controller
         try {
             $users = User::find($id);
             if (!$users) {
-                return $users()->json([
+                return response()->json([
                     'message' => 'Users not found!'
                 ], 404);
             }
